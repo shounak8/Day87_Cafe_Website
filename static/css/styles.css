@@ -1,0 +1,25 @@
+/* ID */
+/* Class */
+.container-fluid {
+  padding: 0 5%;
+}
+
+.cust_forms {font-size:2rem;}
+
+
+.start-end {
+  padding: 10% 5%;
+  text-align: center;
+  background-image: url("../static/images/cafe.jpg");
+}
+
+.contact-info {
+  text-align: left;
+  padding: 10% 1% 0 1%;
+}
+
+.table-content {
+  padding: 0 5%;
+}
+
+/* HTML */

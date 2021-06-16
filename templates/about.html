@@ -1,0 +1,56 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+{% include "header.html" %}
+
+<header class="masthead "
+        style="background-image: url({{ url_for('static', filename='images/about.jpg')}});
+        background-repeat:no-repeat;background-size:cover; background-position: center center;height:700px;">
+    <div class="container-fluid start-end"
+         style="width:40%;text-align:left; margin-left:0;margin-right:auto; color:black;">
+        <h3> We are a team of Coffee and Tea lovers who love technology and are always looking for opportunities for
+            collaboration to improve the scale of our outputs </h3>
+
+        <div class="container-fluid contact-info">
+            <p style="font-size:30px;">You can contact us via:</p>
+            <p style="font-size:20px;"><i class="fas fa-envelope-open-text"></i><a href="mailto:shounak8@icloud.com">
+                shounak8@icloud.com</a></p>
+            <p style="font-size:20px;"><i class="fas fa-phone-volume"></i> +91 9970536215</p>
+            <p style="font-size:30px;"><a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#" style="padding: 0 2%;"><i class="fab fa-facebook-square"></i></a>
+                <a href="#"><i class="fab fa-github-square"></i></a></p>
+        </div>
+    </div>
+
+</header>
+
+<div style="color:black;background-image: url({{ url_for('static', filename='images/testimonial.jpg')}});
+background-repeat:repeat;background-size:cover; background-position: center center;">
+    <h1 style="text-align:center;padding:2%;font-size:6rem;color:white;">Testimonials</h1>
+    <div style="padding:1%;">
+        {% for feedback in feedback_display %}
+        <div style="padding:0.3%;">
+            <div style="border-radius: 25px; background-color:#DEEEEA;border: 2px solid #2F5D62;
+                      padding: 0.5% 2%;
+                      width: 40%; margin:auto;">
+                <h4 style="font:italic bold;">{{feedback.commentator_name}}</h4>
+                <div class="commenterImage">
+                    <img src="{{ feedback.commentator_email | gravatar }}"/>
+                </div>
+                <h6 style="font-style:italic;">{{feedback.date}}</h6>
+                <h1>"{{feedback.comment}}"</h1>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+</div>
+
+</div>
+
+
+{% include "footer.html" %}
+{% endblock %}

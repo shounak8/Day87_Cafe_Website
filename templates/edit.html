@@ -1,0 +1,26 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+{% include "header.html" %}
+
+<header class="masthead "
+        style="background-image: url({{ url_for('static', filename='images/edit.jpg')}});
+        background-repeat:no-repeat;background-size:cover; background-position: center center; height:700px;">
+    <div class="container-fluid start-end" style="padding-top:10px;border-radius:25px;">
+        <div style="height:50%; margin:auto;padding:0;color:black;">
+            <div style="margin:auto;">
+                <h3 style="padding:0;font-size:5rem;">Please EDIT details of the cafe: </h3>
+                <div class="col-md-12 col-sm-6 col-md-offset-4 col-sm-offset-4"
+                     style="width:33%;background-color:#FEDDBE;color:#5E454B;padding:1%;font-size:2rem;border-radius:25px;">
+                    {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</header>
+
+{% include "footer.html" %}
+{% endblock %}

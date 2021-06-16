@@ -1,0 +1,84 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+{% include "header.html" %}
+
+<header class="masthead "
+        style="color:white;background-image: url({{ url_for('static', filename='images/aboutcafe.jpg')}});
+        background-repeat:no-repeat;background-size:cover; background-position: center center;height:400px;">
+    <div class="container-fluid start-end" style="padding: 5%;">
+        <div class="table-content">
+            <table class="table table-hover table-light" style="font-size:2rem; color:black;">
+                <thead>
+                <tr>
+                    <th scope="col">Cafe Name</th>
+                    <th scope="col">City</th>
+                    <th scope="col">WiFi</th>
+                    <th scope="col">Seating</th>
+                    <th scope="col">Food & Coffee</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Edit</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td><a href="">{{data.cafe_name}}</a></td>
+                    <td>{{data.address}}</td>
+                    <td>{{data.wifi}}</td>
+                    <td>{{data.seating}}</td>
+                    <td>{{data.food}}</td>
+                    <td>{{data.cost}}</td>
+                    <td><a href="{{url_for('edit_cafe',index=data.id)}}"><i class="fas fa-pen"></i></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="padding:3%;">
+            <div style="border-radius: 25px; background-color:white;border: 2px solid #2F5D62; color:black;
+                      padding: 0.5%;
+                      width: 50%; margin:auto;">
+                <div>
+                    <h2 style="font-size:3rem; padding: 1%;">Words from the owner:</h2>
+                    <h2 style="font-size:2rem; padding: 0 0 1% 0;"> "{{data.description}}"</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</header>
+
+<div style="color:black;background-image: url({{ url_for('static', filename='images/reviews.jpg')}});
+        background-repeat:repeat;background-size:cover; background-position: center center;">
+    <div style="width:35%; font-size:2rem;margin:auto;">
+        <h1 style="text-align:center;padding:2%;font-size:3rem;">Add your review about cafe<br><span
+                style="font-size:4rem;">{{data.cafe_name}}</span></h1>
+        {{ wtf.quick_form(user_review, novalidate=True, button_map={"submit": "dark"}, extra_classes="cust_forms
+        btn-lg") }}
+    </div>
+    <div style="padding:5%;text-align:center;">
+        <h1>Reviews:</h1>
+        {% for review in display_reviews%}
+        <div style="padding:1%;">
+            <div
+                    style="border-radius: 25px; background-color:#FFF5EB;border: 2px solid #E5B299;
+                      padding: 0.5% 0.5% 0 0.5%;
+                      width: 50%; margin:auto;">
+
+                <h2 style="font-size:3rem;">{{ review.title }}</h2>
+                <h4>Review by: {{ review.author }}</h4>
+                <div class="commenterImage">
+                    <img src="{{ review.author_email | gravatar }}"/>
+                </div>
+                <h4 style="font-style: italic;">{{ review.subtitle }}</h4>
+                <h4 style="padding:2% 0 0 0;">"{{ review.review | safe }}"</h4>
+                <br>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% include "footer.html" %}
+{% endblock %}
